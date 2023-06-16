@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.example.rest
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, gradle, http-client, jackson-databind, java, java-application, junit, logback, micronaut-aot, micronaut-build, netty-server, readme, security-annotations, security-jwt, shade, yaml]
