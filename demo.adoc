@@ -107,7 +107,7 @@ micronaut:
 
   http :8080/hello Authorization:"Bearer $TOKEN"
 +
-You should get a 200 response with your email in it.
+You should get a 200 response with your user id in it.
 
 === Build a Native Micronaut App
 
@@ -117,7 +117,7 @@ You should get a 200 response with your email in it.
 
 . Start your Micronaut app:
 
-  ./target/app
+  ./build/native/nativeCompile/app
 
 . Test it with HTTPie and an access token. You may have to generate a new JWT if yours has expired.
 
@@ -168,15 +168,15 @@ public class HelloResource {
 +
 [source,properties]
 ----
-mp.jwt.verify.publickey.location=https://<your-auth0-domain>/.well-known/jwks.json
 mp.jwt.verify.issuer=https://<your-auth0-domain>/
+mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 ----
 
-. Modify the `HelloResourceTest` to expect a 401 instead of a 200:
+. Rename `GreetingResourceTest` the `HelloResourceTest` to expect a 401 instead of a 200:
 +
 [source,java]
 ----
-package com.okta.rest.quarkus;
+package com.okta.rest;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -221,7 +221,7 @@ public class HelloResourceTest {
 
 . Start your Quarkus app:
 
-  ./target/quarkus-1.0.0-SNAPSHOT-runner
+  ./build/quarkus-1.0.0-SNAPSHOT-runner
 
 . Test it with HTTPie and an access token:
 
@@ -287,7 +287,7 @@ TIP: To build a native app and a Docker container, use the Spring Boot Gradle pl
 
 . Start your Spring Boot app:
 
-  ./target/demo
+  ./build/native/nativeCompile/spring-boot
 
 . Test your API with an access token.
 
@@ -307,7 +307,7 @@ TIP: To build a native app and a Docker container, use the Spring Boot Gradle pl
 helidon init --flavor MP --groupid com.okta.rest \
   --artifactid helidon --package com.okta.rest
 ----
-
++
 TIP: See https://blogs.oracle.com/developers/post/migrating-a-helidon-se-application-to-gradle[Migrating a Helidon SE application to Gradle] for Gradle support.
 
 . Add MicroProfile JWT support in `pom.xml`:
@@ -373,7 +373,7 @@ public class HelloApplication extends Application {
 [source,properties]
 ----
 mp.jwt.verify.issuer=https://<your-auth0-domain>/
-mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}/v1/keys
+mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 ----
 
 === Run and Test Your Helidon REST API with HTTPie
@@ -385,6 +385,8 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}/v1/keys
 . Test your API with an access token.
 
   http :8080/hello Authorization:"Bearer $TOKEN"
+
+. Delete `src/test/java/.../MainTest.java` and `src/main/java/.../Greet*.java`.
 
 === Build a native Helidon app with GraalVM
 

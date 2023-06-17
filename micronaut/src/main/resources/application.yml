@@ -2,13 +2,16 @@ micronaut:
   application:
     name: app
   security:
-    authentication: bearer
+    enabled: true
     token:
       jwt:
+        enabled: true
+        claims-validators:
+          issuer: https://dev-06bzs1cu.us.auth0.com/
         signatures:
-          secret:
-            generator:
-              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+          jwks:
+            okta:
+              url: https://dev-06bzs1cu.us.auth0.com/.well-known/jwks.json
 netty:
   default:
     allocator:
