@@ -390,6 +390,10 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
 === Build a native Helidon app with GraalVM
 
+. Downgrade your JDK to Java 17:
+
+  sdk use java 22.3.1.r17-grl
+
 . Compile your Helidon app into a native executable using the `native-image` profile:
 
   mvn package -Pnative-image
@@ -404,25 +408,32 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
 == Startup Time Comparison
 
-. Run each image three times before recording the numbers, then each command five times
+. Run each image three times before recording the numbers, then each command five times.
 
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (17 + 19 + 19 + 20 + 15) / 5 = 18
-Quarkus: (25 + 18 + 20 + 19 + 21) / 5 = 20.6
-Spring Boot: (39 + 40 + 38 + 37 + 41) / 5 = 39
-Helidon: (45 + 44 + 45 + 39 + 43) / 5 = 43.2
+Micronaut: (27 + 40 + 28 + 25 + 35) / 5 = 31
+Quarkus: (24 + 20 + 20 + 26 + 27) / 5 = 23.4
+Spring Boot: (43 + 43 + 41 + 41 + 40) / 5 = 41.6
+Helidon: (39 + 50 + 36 + 47 + 47) / 5 = 43.8
 ----
+
+////
+Micronaut was 18
+Quarkus was 20.6
+Spring Boot was 39
+Helidon was 43.2
+////
 
 .Native Java startup times in milliseconds
 |===
 |Framework | Command executed | Milliseconds to start
 
-|Micronaut | `./micronaut/target/app` | 18
-|Quarkus | `./quarkus/target/quarkus-1.0.0-SNAPSHOT-runner` | 20.6
-|Spring Boot | `./spring-boot/target/demo` | 39
-|Helidon | `./helidon/target/helidon` | 43.2
+|Micronaut | `./micronaut/build/native/nativeCompile/app` | 31
+|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 23.4
+|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 41.6
+|Helidon | `./helidon/target/helidon` | 43.8
 |===
 
 == Memory Usage Comparison
@@ -440,10 +451,10 @@ Substitute `<executable>` as follows:
 |===
 |Framework | Executable | Megabytes before request | Megabytes after request| Megabytes after 5 requests
 
-|Micronaut | `app` | 43 | 58 | 69
-|Quarkus | `quarkus` | 37 | 48 | 50
-|Spring Boot | `demo` | 74 | 98 | 99
-|Helidon | `helidon` | 79 | 97 | 131
+|Micronaut | `app` | 40 | 54 | 57
+|Quarkus | `quarkus` | 35 | 48 | 50
+|Spring Boot | `spring-boot` | 69 | 81 | 82
+|Helidon | `helidon` | 74 | 93 | 126
 |===
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself. If you get faster startup times for Spring Boot, do you get faster startup times for Micronaut and Quarkus too?

@@ -3,12 +3,13 @@
 # exit when any command fails
 set -e
 
-rm -rf {helidon,micronaut,quarkus,spring-boot}/target
-//todo: gradle
-cd micronaut && ./mvnw package -Dpackaging=native-image
+rm -rf {micronaut,quarkus,spring-boot}/build
+rm -rf helidon/target
 
-cd ../quarkus && ./mvnw package -Pnative
+cd micronaut && ./gradlew nativeCompile
 
-cd ../spring-boot && ./mvnw native:compile -Pnative
+cd ../quarkus && ./gradlew build -Dquarkus.package.type=native
+
+cd ../spring-boot && ./gradlew nativeCompile
 
 cd ../helidon && mvn package -Pnative-image
