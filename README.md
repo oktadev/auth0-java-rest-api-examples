@@ -72,9 +72,9 @@ You can also build and run each example as a native app.
 
 Then, start each app as a native executable.
 
-- Micronaut: `./target/app`
-- Quarkus: `./target/quarkus-1.0.0-SNAPSHOT-runner`
-- Spring Boot:  `./target/demo`
+- Micronaut: `./build/native/nativeCompile/app`
+- Quarkus: `./build/quarkus-1.0.0-SNAPSHOT-runner`
+- Spring Boot:  `./build/native/nativeCompile/spring-boot`
 - Helidon: `./target/helidon`
 
 ## Links
