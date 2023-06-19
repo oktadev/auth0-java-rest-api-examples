@@ -82,19 +82,9 @@ public class HelloController {
 // uses YAML because that's the default type that's generated
 [source,yaml]
 ----
-micronaut:
-  ...
-  security:
-    enabled: true
-    token:
-      jwt:
-        enabled: true
-        claims-validators:
-          issuer: https://<your-auth0-domain>/
-        signatures:
-          jwks:
-            okta:
-              url: https://<your-auth0-domain>/.well-known/jwks.json
+micronaut.security.token.jwt.enabled: true
+micronaut.security.token.jwt.signatures.jwks.okta.url: https://dev-06bzs1cu.us.auth0.com/.well-known/jwks.json
+netty.default.allocator.max-order: 3
 ----
 
 === Run and Test Your Micronaut API with HTTPie
