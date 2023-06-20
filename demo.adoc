@@ -9,7 +9,7 @@ In this demo, I'll show how to create native images with Micronaut, Quarkus, Spr
 
 **Prerequisites:**
 
-- https://sdkman.io/[SDKMAN] (for Java 19 with GraalVM)
+- https://sdkman.io/[SDKMAN] (for Java 20 with GraalVM)
 - https://httpie.io/[HTTPie] (a better version of cURL)
 - A free https://auth0.com/signup[Auth0 account] and the https://github.com/auth0/auth0-cli#installation[Auth0 CLI]
 
@@ -19,9 +19,9 @@ toc::[]
 
 == Install a JDK with GraalVM
 
-Use SDKMAN to install Java 19 with GraalVM
+Use SDKMAN to install Java 20 with GraalVM
 
-  sdk install java 22.3.1.r19-grl
+  sdk install java 22.3.3.r20-grl
 
 == Generate an OAuth 2.0 Access Token
 
@@ -403,13 +403,14 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (27 + 40 + 28 + 25 + 35) / 5 = 31
-Quarkus: (24 + 20 + 20 + 26 + 27) / 5 = 23.4
-Spring Boot: (43 + 43 + 41 + 41 + 40) / 5 = 41.6
-Helidon: (39 + 50 + 36 + 47 + 47) / 5 = 43.8
+Micronaut: (22 + 19 + 20 + 26 + 21) / 5 = 21.6
+Quarkus: (25 + 23 + 17 + 18 + 15) / 5 = 19.6
+Spring Boot: (34 + 36 + 29 + 32 + 30) / 5 = 32.2
+Helidon: (34 + 36 + 40 + 38 + 42) / 5 = 43.8
 ----
 
 ////
+October 2022:
 Micronaut was 18
 Quarkus was 20.6
 Spring Boot was 39
@@ -420,9 +421,9 @@ Helidon was 43.2
 |===
 |Framework | Command executed | Milliseconds to start
 
-|Micronaut | `./micronaut/build/native/nativeCompile/app` | 31
-|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 23.4
-|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 41.6
+|Micronaut | `./micronaut/build/native/nativeCompile/app` | 21.6
+|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 19.6
+|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 32.2
 |Helidon | `./helidon/target/helidon` | 43.8
 |===
 
@@ -441,13 +442,13 @@ Substitute `<executable>` as follows:
 |===
 |Framework | Executable | Megabytes before request | Megabytes after request| Megabytes after 5 requests
 
-|Micronaut | `app` | 40 | 54 | 57
-|Quarkus | `quarkus` | 35 | 48 | 50
-|Spring Boot | `spring-boot` | 69 | 81 | 82
-|Helidon | `helidon` | 74 | 93 | 126
+|Micronaut | `app` | 38 | 53 | 54
+|Quarkus | `quarkus` | 35 | 47 | 49
+|Spring Boot | `spring-boot` | 63 | 74 | 75
+|Helidon | `helidon` | 74 | 91 | 124
 |===
 
-IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself. If you get faster startup times for Spring Boot, do you get faster startup times for Micronaut and Quarkus too?
+IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.
 
 == Native Java REST APIs FTW!
 
