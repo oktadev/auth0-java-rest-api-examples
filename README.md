@@ -49,7 +49,7 @@ Change the following files for each framework to match your Auth0 domain:
 
 You can start each app using its CLI, Gradle, or Maven. Note that you will only be able to start one at a time since they all run on port 8080.
 
-- Micronaut: `./gradlew run`
+- Micronaut: `./gradlew optimizedRun`
 - Quarkus: `quarkus dev`
 - Spring Boot: `./gradlew bootRun`
 - Helidon: `helidon dev`
@@ -66,7 +66,7 @@ You should see your email address printed to your terminal.
 
 You can also build and run each example as a native app.
 
-- Micronaut: `./gradlew nativeCompile`
+- Micronaut: `./gradlew nativeOptimizedCompile`
 - Quarkus: `quarkus build --native`
 - Spring Boot: `./gradlew nativeCompile`
 - Helidon: `mvn package -Pnative-image`
