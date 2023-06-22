@@ -122,7 +122,7 @@ You should get a 200 response with your user id in it.
 sdk install quarkus
 quarkus create app com.okta.rest:quarkus \
     --extension="smallrye-jwt,resteasy" \
-	--gradle
+    --gradle
 ----
 
 . Rename `GreetingResource.java` to `HelloResource.java` and add user information to the `hello()` method: [`qk-hello`]
@@ -380,9 +380,14 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
 === Build a native Helidon app with GraalVM
 
-. Downgrade your JDK to Java 17:
-
-  sdk use java 22.3.1.r17-grl
+. Update `src/main/resources/META-INF/native-image/com.okta.rest/helidon/native-image.properties` so native compilation will work with Java 20.
++
+[source,properties]
+----
+Args=--initialize-at-build-time=com.okta.rest \
+  --initialize-at-run-time=io.helidon.openapi.ExpandedTypeDescription \
+  --report-unsupported-elements-at-runtime
+----
 
 . Compile your Helidon app into a native executable using the `native-image` profile:
 
@@ -403,10 +408,11 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (22 + 19 + 20 + 26 + 21) / 5 = 21.6
-Quarkus: (25 + 23 + 17 + 18 + 15) / 5 = 19.6
-Spring Boot: (34 + 36 + 29 + 32 + 30) / 5 = 32.2
-Helidon: (34 + 36 + 40 + 38 + 42) / 5 = 43.8
+Micronaut: (30 + 24 + 29 + 29 + 34) / 5 = 29.2
+Quarkus: (20 + 22 + 18 + 23 + 22) / 5 = 21
+Spring Boot: (36 + 33 + 36 + 35 + 32) / 5 = 34.4
+Helidon: (47 + 49 + 39 + 38 + 40) / 5 = 42.6
+Helidon (optimized): (31 + 34 + 30 + 35 + 28) / 5 = 31.6
 ----
 
 ////
@@ -446,6 +452,7 @@ Substitute `<executable>` as follows:
 |Quarkus | `quarkus` | 35 | 47 | 49
 |Spring Boot | `spring-boot` | 63 | 74 | 75
 |Helidon | `helidon` | 74 | 91 | 124
+|Helidon (optimized) | `helidon` | 54 | 77 | 110
 |===
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.

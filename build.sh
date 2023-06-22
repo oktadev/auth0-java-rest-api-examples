@@ -19,5 +19,4 @@ echo "Building Spring Boot..."
 cd ../spring-boot && ./gradlew nativeCompile
 
 echo "Building Helidon..."
-sdk use java 22.3.1.r17-grl
 cd ../helidon && mvn package -Pnative-image
