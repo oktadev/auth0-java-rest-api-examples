@@ -17,6 +17,7 @@ dependencies {
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut.security:micronaut-security-jwt")
     runtimeOnly("ch.qos.logback:logback-classic")
+    aotPlugins("io.micronaut.security:micronaut-security-aot:3.11.0")
 }
 
 application {
@@ -36,15 +37,7 @@ micronaut {
         annotations("com.example.rest.*")
     }
     aot {
-        // Please review carefully the optimizations enabled below
-        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
-        optimizeServiceLoading = true
-        convertYamlToJava = true
-        precomputeOperations = true
-        cacheEnvironment = true
-        optimizeClassLoading = true
-        deduceEnvironment = true
-        optimizeNetty = true
+        configFile = file("aot.properties")
     }
 }
 
