@@ -16,7 +16,7 @@ echo "Building Quarkus..."
 cd ../quarkus && ./gradlew build -Dquarkus.package.type=native
 
 echo "Building Spring Boot..."
-cd ../spring-boot && ./gradlew nativeOptimizedCompile
+cd ../spring-boot && ./gradlew nativeCompile
 
 echo "Building Helidon..."
 cd ../helidon && mvn package -Pnative-image
