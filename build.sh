@@ -16,8 +16,7 @@ echo "Building Quarkus..."
 cd ../quarkus && ./gradlew build -Dquarkus.package.type=native
 
 echo "Building Spring Boot..."
-cd ../spring-boot && ./gradlew nativeCompile
+cd ../spring-boot && ./gradlew nativeOptimizedCompile
 
 echo "Building Helidon..."
-sdk use java 22.3.1.r17-grl
 cd ../helidon && mvn package -Pnative-image
