@@ -37,7 +37,17 @@ micronaut {
         annotations("com.example.rest.*")
     }
     aot {
-        configFile = file("aot.properties")
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = true
+        convertYamlToJava = true
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+        configurationProperties.put('micronaut.security.openid-configuration.enabled', 'true')
+        configurationProperties.put('micronaut.security.jwks.enabled', 'true')
     }
 }
 
