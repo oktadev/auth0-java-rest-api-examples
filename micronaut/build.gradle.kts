@@ -27,8 +27,7 @@ java {
     sourceCompatibility = JavaVersion.toVersion("17")
     targetCompatibility = JavaVersion.toVersion("17")
 }
-
-graalvmNative.toolchainDetection = false
+graalvmNative.toolchainDetection.set(false)
 micronaut {
     runtime("netty")
     testRuntime("junit5")
@@ -39,15 +38,15 @@ micronaut {
     aot {
         // Please review carefully the optimizations enabled below
         // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
-        optimizeServiceLoading = true
-        convertYamlToJava = true
-        precomputeOperations = true
-        cacheEnvironment = true
-        optimizeClassLoading = true
-        deduceEnvironment = true
-        optimizeNetty = true
-        configurationProperties.put('micronaut.security.openid-configuration.enabled', 'true')
-        configurationProperties.put('micronaut.security.jwks.enabled', 'true')
+        optimizeServiceLoading.set(true)
+        convertYamlToJava.set(true)
+        precomputeOperations.set(true)
+        cacheEnvironment.set(true)
+        optimizeClassLoading.set(true)
+        deduceEnvironment.set(true)
+        optimizeNetty.set(true)
+        configurationProperties.put("micronaut.security.openid-configuration.enabled", "true")
+        configurationProperties.put("micronaut.security.jwks.enabled", "true")
     }
 }
 
