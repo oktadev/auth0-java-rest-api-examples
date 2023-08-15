@@ -295,7 +295,7 @@ TIP: To build a native app and a Docker container, use the Spring Boot Gradle pl
 [source,shell]
 ----
 helidon init --flavor MP --groupid com.okta.rest \
-  --artifactid helidon --package com.okta.rest
+  --artifactid helidon --package com.okta.rest --batch
 ----
 +
 TIP: See https://blogs.oracle.com/developers/post/migrating-a-helidon-se-application-to-gradle[Migrating a Helidon SE application to Gradle] for Gradle support.
@@ -376,7 +376,10 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
   http :8080/hello Authorization:"Bearer $TOKEN"
 
-. Delete `src/test/java/.../MainTest.java` and `src/main/java/.../Greet*.java`.
+. Delete the default Java classes created by the Helidon CLI:
+
+- On Windows: `del /s *.java`
+- On Mac/Linux: `find . -name '*.java' -delete`
 
 === Build a native Helidon app with GraalVM
 
