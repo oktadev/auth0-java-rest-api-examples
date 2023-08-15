@@ -1,4 +1,4 @@
-package com.example.rest;
+package com.okta.rest;
 
 import io.micronaut.runtime.EmbeddedApplication;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
