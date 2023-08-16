@@ -21,7 +21,7 @@ toc::[]
 
 Use SDKMAN to install Java 20 with GraalVM
 
-  sdk install java 22.3.3.r20-grl
+  sdk install java 20.0.2-graalce
 
 == Generate an OAuth 2.0 Access Token
 
@@ -46,7 +46,7 @@ auth0 test token -a https://<your-auth0-domain>/api/v2/
 [source,shell]
 ----
 sdk install micronaut
-mn create-app com.example.rest.app -f security-jwt -f micronaut-aot
+mn create-app com.okta.rest.app -f security-jwt -f micronaut-aot
 mv app micronaut
 ----
 
@@ -78,13 +78,12 @@ public class HelloController {
 }
 ----
 
-. Enable and configure JWT security in `src/main/resources/application.yml`: [`mn-security-config`]
-// uses YAML because that's the default type that's generated
-[source,yaml]
+. Enable and configure JWT security in `src/main/resources/application.properties`: [`mn-security-config`]
++
+[source,properties]
 ----
-micronaut.security.token.jwt.enabled: true
-micronaut.security.token.jwt.signatures.jwks.okta.url: https://dev-06bzs1cu.us.auth0.com/.well-known/jwks.json
-netty.default.allocator.max-order: 3
+micronaut.security.token.jwt.enabled=true
+micronaut.security.token.jwt.signatures.jwks.okta.url=https://dev-06bzs1cu.us.auth0.com/.well-known/jwks.json
 ----
 
 === Run and Test Your Micronaut API with HTTPie
