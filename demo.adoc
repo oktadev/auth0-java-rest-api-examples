@@ -161,7 +161,7 @@ mp.jwt.verify.issuer=https://<your-auth0-domain>/
 mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 ----
 
-. Rename `GreetingResourceTest` the `HelloResourceTest` to expect a 401 instead of a 200:
+. Rename `GreetingResourceTest` to `HelloResourceTest` and modify it to expect a 401 instead of a 200:
 +
 [source,java]
 ----
