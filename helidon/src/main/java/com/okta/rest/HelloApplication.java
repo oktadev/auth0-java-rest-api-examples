@@ -5,6 +5,7 @@ import org.eclipse.microprofile.auth.LoginConfig;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.Application;
+
 import java.util.Set;
 
 @LoginConfig(authMethod = "MP-JWT")
