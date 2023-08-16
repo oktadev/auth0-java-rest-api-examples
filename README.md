@@ -20,7 +20,7 @@ git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
 You will need a JDK with GraalVM and its native-image compiler. Using [SDKMAN](https://sdkman.io), run the following command and set it as the default:
 
 ```bash
-sdk install java 22.3.3.r20-grl
+sdk install java 20.0.2-graalce
 ```
 <!-- https://joshlong.com/jl/blogPost/graalvm-on-apple-m1-arm-computers.html -->
 
@@ -42,7 +42,7 @@ TOKEN=eyJraWQiOiJYa2pXdjMzTDRBYU1ZSzNGM...
 
 Change the following files for each framework to match your Auth0 domain:
 
-- Micronaut: `micronaut/src/main/resources/application.yml`
+- Micronaut: `micronaut/src/main/resources/application.properties`
 - Quarkus: `quarkus/src/main/resources/application.properties`
 - Spring Boot: `spring-boot/src/main/resources/application.properties`
 - Helidon: `helidon/src/main/resources/META-INF/microprofile-config.properties`
