@@ -414,7 +414,7 @@ Micronaut: (21 + 18 + 21 + 17 + 18) / 5 = 19
 Quarkus: (26 + 27 + 22 + 28 + 26) / 5 = 25.8
 Spring Boot: (42 + 41 + 40 + 43 + 41) / 5 = 41.4
 Helidon: (55 + 50 + 47 + 45 + 58) / 5 = 51
-Helidon (optimized): (31 + 33 + 35 + 33 + 34) / 5 = 33.2
+Helidon (optimized): (35 + 35 + 37 + 36 + 37) / 5 = 36
 ----
 
 ////
@@ -441,7 +441,7 @@ October 2022:
 |Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 25.8
 |Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 41.4
 |Helidon | `./helidon/target/helidon` | 51
-|Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 33.2
+|Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 36
 |===
 
 == Memory Usage Comparison
@@ -459,12 +459,11 @@ Substitute `<executable>` as follows:
 |===
 |Framework | Executable | Megabytes before request | Megabytes after request| Megabytes after 5 requests
 
-|Micronaut | `app` | 39 | 53 | 54
-|Micronaut (optimized) | `app` | 37 | 46 | 47
-|Quarkus | `quarkus` | 35 | 47 | 48
-|Spring Boot | `spring-boot` | 63 | 75 | 75
-|Helidon | `helidon` | 72 | 91 | 124
-|Helidon (optimized) | `helidon` | 53 | 78 | 111
+|Micronaut | `app` | 46 | 62 | 64
+|Quarkus | `quarkus` | 37 | 51 | 52
+|Spring Boot | `spring-boot` | 71 | 94 | 95
+|Helidon | `helidon` | 76 | 95 | 113
+|Helidon (optimized) | `helidon` | 59 | 84 | 102
 |===
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.
