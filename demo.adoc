@@ -410,31 +410,37 @@ Args=--initialize-at-build-time=com.okta.rest \
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (29 + 36 + 34 + 32 + 36) / 5 = 33.4
-Micronaut (optimized): (20 + 25 + 18 + 29 + 27) / 5 = 23.8
-Quarkus: (27 + 26 + 27 + 22 + 27) / 5 = 25.8
-Spring Boot: (38 + 39 + 41 + 40 + 41) / 5 = 39.8
-Helidon: (45 + 52 + 53 + 53 + 35) / 5 = 47.6
+Micronaut: (21 + 18 + 21 + 17 + 18) / 5 = 19
+Quarkus: (26 + 27 + 22 + 28 + 26) / 5 = 25.8
+Spring Boot: (42 + 41 + 40 + 43 + 41) / 5 = 41.4
+Helidon: (55 + 50 + 47 + 45 + 58) / 5 = 51
 Helidon (optimized): (31 + 33 + 35 + 33 + 34) / 5 = 33.2
 ----
 
 ////
+June 2023:
+- Micronaut: 33.4
+- Micronaut (optimized): 23.8
+- Quarkus: 25.8
+- Spring Boot: 39.8
+- Helidon: 47.6
+- Helidon (optimized): 33.2
+
 October 2022:
-Micronaut was 18
-Quarkus was 20.6
-Spring Boot was 39
-Helidon was 43.2
+- Micronaut was 18
+- Quarkus was 20.6
+- Spring Boot was 39
+- Helidon was 43.2
 ////
 
 .Native Java startup times in milliseconds
 |===
 |Framework | Command executed | Milliseconds to start
 
-|Micronaut | `./micronaut/build/native/nativeCompile/app` | 33.4
-|Micronaut (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/3[auth0-java-rest-api-examples/pull/3]  | 23.8
+|Micronaut | `./micronaut/build/native/nativeCompile/app` | 19
 |Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 25.8
-|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 39.8
-|Helidon | `./helidon/target/helidon` | 47.6
+|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 41.4
+|Helidon | `./helidon/target/helidon` | 51
 |Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 33.2
 |===
 
