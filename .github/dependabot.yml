@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Dependencies for Gradle
+  - package-ecosystem: 'gradle'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+
+  # Dependencies for Maven
+  - package-ecosystem: 'maven'
+    directory: '/'
+    schedule:
+      interval: 'daily'
