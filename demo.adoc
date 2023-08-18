@@ -468,6 +468,36 @@ Substitute `<executable>` as follows:
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.
 
+== What about Reactive?
+
+All of these framework have reactive features. You can create reactive versions of each app with the following changes.
+
+=== Micronaut Reactive
+
+Nothing needs to be done to make Micronaut reactive. It has no separate reactive web framework. See Piotr Minkowski's [Micronaut Tutorial: Reactive](https://piotrminkowski.com/2019/11/12/micronaut-tutorial-reactive/) and [Micronaut's Reactive Guides](https://guides.micronaut.io/latest/tag-reactive.html) for more information.
+
+=== Quarkus Reactive
+
+Quarkus has a [Getting Started with Reactive](https://quarkus.io/guides/getting-started-reactive) guide.
+
+To convert the Quarkus application to reactive, change the RESTEasy dependency to the reactive version:
+
+[source,gradle]
+----
+implementation 'io.quarkus:quarkus-resteasy-reactive'
+----
+
+=== Spring Boot Reactive
+
+[Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) is the reactive web framework for Spring Boot.
+
+To convert the Spring Boot application to reactive, change the Spring Web dependency be WebFlux:
+
+[source,gradle]
+----
+implementation 'org.springframework.boot:spring-boot-starter-webflux'
+----
+
 == Native Java REST APIs FTW!
 
 🚀 Find the code on GitHub: https://github.com/oktadev/auth0-java-rest-api-examples[@oktadev/auth0-java-rest-api-examples]
