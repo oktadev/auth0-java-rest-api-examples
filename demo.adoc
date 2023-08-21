@@ -474,11 +474,11 @@ All of these framework have reactive features. You can create reactive versions 
 
 === Micronaut Reactive
 
-Nothing needs to be done to make Micronaut reactive. It has no separate reactive web framework. See Piotr Minkowski's [Micronaut Tutorial: Reactive](https://piotrminkowski.com/2019/11/12/micronaut-tutorial-reactive/) and [Micronaut's Reactive Guides](https://guides.micronaut.io/latest/tag-reactive.html) for more information.
+Nothing needs to be done to make Micronaut reactive. It has no separate reactive web framework. See Piotr Minkowski's https://piotrminkowski.com/2019/11/12/micronaut-tutorial-reactive/[Micronaut Tutorial: Reactive] and https://guides.micronaut.io/latest/tag-reactive.html[Micronaut's Reactive Guides] for more information.
 
 === Quarkus Reactive
 
-Quarkus has a [Getting Started with Reactive](https://quarkus.io/guides/getting-started-reactive) guide.
+Quarkus has a https://quarkus.io/guides/getting-started-reactive[Getting Started with Reactive] guide.
 
 To convert the Quarkus application to reactive, change the RESTEasy dependency to the reactive version:
 
@@ -489,7 +489,7 @@ implementation 'io.quarkus:quarkus-resteasy-reactive'
 
 === Spring Boot Reactive
 
-[Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) is the reactive web framework for Spring Boot.
+https://docs.spring.io/spring-framework/reference/web/webflux.html[Spring WebFlux] is the reactive web framework for Spring Boot.
 
 To convert the Spring Boot application to reactive, change the Spring Web dependency be WebFlux:
 
