@@ -18,9 +18,8 @@ dependencies {
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("io.micronaut:micronaut-http-client")
-    aotPlugins("io.micronaut.security:micronaut-security-aot:4.0.1")
+    aotPlugins("io.micronaut.security:micronaut-security-aot:4.0.4")
 }
-
 
 application {
     mainClass.set("com.okta.rest.Application")
