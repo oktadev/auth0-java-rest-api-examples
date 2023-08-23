@@ -67,6 +67,7 @@ You should see your email address printed to your terminal.
 You can also build and run each example as a native app.
 
 - Micronaut: `./gradlew nativeCompile`
+- Micronaut [AOT](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_micronaut_aot_plugin): `./gradlew nativeOptimizedCompile` - GraalVM executable compiled with Micronaut AOT optimizations
 - Quarkus: `quarkus build --native`
 - Spring Boot: `./gradlew nativeCompile`
 - Helidon: `mvn package -Pnative-image`
@@ -74,6 +75,7 @@ You can also build and run each example as a native app.
 Then, start each app as a native executable.
 
 - Micronaut: `./build/native/nativeCompile/app`
+- Micronaut AOT: `./build/native/nativeOptimizedCompile/app`
 - Quarkus: `./build/quarkus-1.0.0-SNAPSHOT-runner`
 - Spring Boot:  `./build/native/nativeCompile/spring-boot`
 - Helidon: `./target/helidon`
