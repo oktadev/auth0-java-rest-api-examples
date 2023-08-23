@@ -478,14 +478,53 @@ Nothing needs to be done to make Micronaut reactive. It has no separate reactive
 
 === Quarkus Reactive
 
-Quarkus has a https://quarkus.io/guides/getting-started-reactive[Getting Started with Reactive] guide.
-
-To convert the Quarkus application to reactive, change the RESTEasy dependency to the reactive version:
+To convert the Quarkus application to reactive, change the SmallRye JWT dependency to Quarkus OIDC in `build.gradle`:
 
 [source,gradle]
 ----
-implementation 'io.quarkus:quarkus-resteasy-reactive'
+implementation 'io.quarkus:quarkus-oidc'
 ----
+
+Change the `application.properties` to use OIDC:
+
+[source,properties]
+----
+quarkus.oidc.auth-server-url=https://<your-auth0-domain>/
+----
+
+And update `HelloResource.java` to read the name from the JWT:
+
+[source,java]
+----
+package com.okta.rest;
+
+import io.quarkus.security.Authenticated;
+import io.smallrye.mutiny.Uni;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
+@Path("/hello")
+public class HelloResource {
+
+    @Inject
+    JsonWebToken jwt;
+
+    @GET
+    @Path("/")
+    @Authenticated
+    @Produces(MediaType.TEXT_PLAIN)
+    public Uni<String> hello() {
+        return Uni.createFrom().item("Hello, " + jwt.getName() + "!");
+    }
+
+}
+----
+
+For more information, see Quarkus' https://quarkus.io/guides/getting-started-reactive[Getting Started with Reactive] guide.
 
 === Spring Boot Reactive
 
