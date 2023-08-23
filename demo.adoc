@@ -119,7 +119,7 @@ You should get a 200 response with your user id in it.
 ----
 sdk install quarkus
 quarkus create app com.okta.rest:quarkus \
-    --extension="smallrye-jwt,resteasy" \
+    --extension="smallrye-jwt,resteasy-reactive" \
     --gradle
 ----
 
