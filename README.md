@@ -50,6 +50,7 @@ Change the following files for each framework to match your Auth0 domain:
 You can start each app using its CLI, Gradle, or Maven. Note that you will only be able to start one at a time since they all run on port 8080.
 
 - Micronaut: `./gradlew run`
+- Micronaut [AOT](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_micronaut_aot_plugin): `./gradlew optimizedRun`
 - Quarkus: `quarkus dev`
 - Spring Boot: `./gradlew bootRun`
 - Helidon: `helidon dev`
@@ -67,6 +68,7 @@ You should see your email address printed to your terminal.
 You can also build and run each example as a native app.
 
 - Micronaut: `./gradlew nativeCompile`
+- Micronaut [AOT](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_micronaut_aot_plugin): `./gradlew nativeOptimizedCompile` - GraalVM executable compiled with Micronaut AOT optimizations
 - Quarkus: `quarkus build --native`
 - Spring Boot: `./gradlew nativeCompile`
 - Helidon: `mvn package -Pnative-image`
@@ -74,6 +76,7 @@ You can also build and run each example as a native app.
 Then, start each app as a native executable.
 
 - Micronaut: `./build/native/nativeCompile/app`
+- Micronaut AOT: `./build/native/nativeOptimizedCompile/app`
 - Quarkus: `./build/quarkus-1.0.0-SNAPSHOT-runner`
 - Spring Boot:  `./build/native/nativeCompile/spring-boot`
 - Helidon: `./target/helidon`
