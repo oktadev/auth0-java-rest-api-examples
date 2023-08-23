@@ -82,7 +82,6 @@ public class HelloController {
 +
 [source,properties]
 ----
-micronaut.security.token.jwt.enabled=true
 micronaut.security.token.jwt.signatures.jwks.okta.url=https://dev-06bzs1cu.us.auth0.com/.well-known/jwks.json
 ----
 
@@ -120,7 +119,7 @@ You should get a 200 response with your user id in it.
 ----
 sdk install quarkus
 quarkus create app com.okta.rest:quarkus \
-    --extension="smallrye-jwt,resteasy" \
+    --extension="smallrye-jwt,resteasy-reactive" \
     --gradle
 ----
 
