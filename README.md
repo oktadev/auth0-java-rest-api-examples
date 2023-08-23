@@ -50,6 +50,7 @@ Change the following files for each framework to match your Auth0 domain:
 You can start each app using its CLI, Gradle, or Maven. Note that you will only be able to start one at a time since they all run on port 8080.
 
 - Micronaut: `./gradlew run`
+- Micronaut [AOT](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_micronaut_aot_plugin): `./gradlew optimizedRun`
 - Quarkus: `quarkus dev`
 - Spring Boot: `./gradlew bootRun`
 - Helidon: `helidon dev`
