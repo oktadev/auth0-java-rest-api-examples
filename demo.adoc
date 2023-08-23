@@ -489,7 +489,7 @@ Change the `application.properties` to use OIDC:
 
 [source,properties]
 ----
-quarkus.oidc.auth-server-url=https://<your-auth0-domain>/
+quarkus.oidc.auth-server-url=https://<your-auth0-domain>
 ----
 
 And update `HelloResource.java` to read the name from the JWT:
