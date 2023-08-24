@@ -223,7 +223,7 @@ public class HelloResourceTest {
 ----
 sdk install springboot
 spring init -d=web,oauth2-resource-server,native \
-  --package-name=com.okta.rest spring-boot
+  --group-id=com.okta.rest --package-name=com.okta.rest spring-boot
 ----
 
 . Add a `HelloController` class that returns the user's information: [`sb-hello`]
