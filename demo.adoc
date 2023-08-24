@@ -409,11 +409,12 @@ Args=--initialize-at-build-time=com.okta.rest \
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (21 + 18 + 21 + 17 + 18) / 5 = 19
-Quarkus: (26 + 27 + 22 + 28 + 26) / 5 = 25.8
-Spring Boot: (42 + 41 + 40 + 43 + 41) / 5 = 41.4
-Helidon: (55 + 50 + 47 + 45 + 58) / 5 = 51
-Helidon (optimized): (35 + 35 + 37 + 36 + 37) / 5 = 36
+Micronaut: (12 + 17 + 16 + 18 + 15) / 5 = 15.6
+Micronaut (optimized): (14 + 13 + 17 + 13 + 13) / 5 = 14
+Quarkus: (35 + 36 + 37 + 37 + 39) / 5 = 36.8
+Spring Boot: (38 + 34 + 34 + 41 + 44) / 5 = 38.2
+Helidon: (51 + 53 + 48 + 39 + 51) / 5 = 48.4
+Helidon (optimized): (28 + 33 + 35 + 32 + 26) / 5 = 30.8
 ----
 
 ////
@@ -436,11 +437,12 @@ October 2022:
 |===
 |Framework | Command executed | Milliseconds to start
 
-|Micronaut | `./micronaut/build/native/nativeCompile/app` | 19
-|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 25.8
-|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 41.4
-|Helidon | `./helidon/target/helidon` | 51
-|Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 36
+|Micronaut | `./micronaut/build/native/nativeCompile/app` | 15.6
+|Micronaut (optimized) | `./micronaut/build/native/nativeOptimizedCompile/app` | 14
+|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 36.8
+|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 38.2
+|Helidon | `./helidon/target/helidon` | 48.4
+|Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 30.8
 |===
 
 == Memory Usage Comparison
@@ -458,11 +460,12 @@ Substitute `<executable>` as follows:
 |===
 |Framework | Executable | Megabytes before request | Megabytes after request| Megabytes after 5 requests
 
-|Micronaut | `app` | 46 | 62 | 64
-|Quarkus | `quarkus` | 37 | 51 | 52
-|Spring Boot | `spring-boot` | 71 | 94 | 95
-|Helidon | `helidon` | 76 | 95 | 113
-|Helidon (optimized) | `helidon` | 59 | 84 | 102
+|Micronaut | `app` | 45 | 60 | 62
+|Micronaut (optimized) | `app` | 45 | 53 | 56
+|Quarkus | `quarkus` | 42 | 56 | 58
+|Spring Boot | `spring-boot` | 71 | 94 | 94
+|Helidon | `helidon` | 75 | 93 | 110
+|Helidon (optimized) | `helidon` | 59 | 83 | 101
 |===
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.
