@@ -458,7 +458,7 @@ Substitute `<executable>` as follows:
 
 .Native Java memory used in megabytes
 |===
-|Framework | Executable | Megabytes before request | Megabytes after request| Megabytes after 5 requests
+|Framework | Executable | Megabytes after startup | Megabytes after 1 request| Megabytes after 5 requests
 
 |Micronaut | `app` | 45 | 60 | 62
 |Micronaut (optimized) | `app` | 45 | 53 | 56
