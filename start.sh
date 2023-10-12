@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash
 
 # Check if an app was provided as a command-line argument
 if [ "$#" -ne 1 ]; then
@@ -50,7 +50,7 @@ while true; do
     elapsed_time=$((end_time - start_time))
 
     # Print the time in milliseconds
-    echo "App is available on port 8080. Time taken to start: ${elapsed_time} milliseconds"
+    echo "App is available on port 8080. Duration to start: ${elapsed_time} milliseconds"
     fkill :8080
     break
   fi
