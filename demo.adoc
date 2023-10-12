@@ -9,7 +9,7 @@ In this demo, I'll show how to create native images with Micronaut, Quarkus, Spr
 
 **Prerequisites:**
 
-- https://sdkman.io/[SDKMAN] (for Java 20 with GraalVM)
+- https://sdkman.io/[SDKMAN] (for Java 21 with GraalVM)
 - https://httpie.io/[HTTPie] (a better version of cURL)
 - A free https://auth0.com/signup[Auth0 account] and the https://github.com/auth0/auth0-cli#installation[Auth0 CLI]
 
@@ -19,9 +19,9 @@ toc::[]
 
 == Install a JDK with GraalVM
 
-Use SDKMAN to install Java 20 with GraalVM
+Use SDKMAN to install Java 21 with GraalVM
 
-  sdk install java 20.0.2-graalce
+  sdk install java 21-graalce
 
 == Generate an OAuth 2.0 Access Token
 
@@ -114,7 +114,7 @@ You should get a 200 response with your user id in it.
 == Create a Java REST API with Quarkus
 
 . Use SDKMAN to install the Quarkus CLI and create a new app with JWT support:
-
++
 [source,shell]
 ----
 sdk install quarkus
@@ -283,15 +283,11 @@ TIP: To build a native app and a Docker container, use the Spring Boot Gradle pl
 
 == Build a Java REST API with Helidon
 
-. Install the https://helidon.io/docs/latest/#/about/cli[Helidon CLI].
-
-// SDKMAN support is coming soon! https://sdkman.io/sdks#helidon
-// https://github.com/helidon-io/helidon-build-tools/issues/352
-
-. Create a Helidon app with OAuth 2.0 support:
+. Use SDKMAN to install the Helidon CLI. Then, create a Helidon app:
 +
 [source,shell]
 ----
+sdk install helidon
 helidon init --flavor MP --groupid com.okta.rest \
   --artifactid helidon --package com.okta.rest --batch
 ----
@@ -381,7 +377,7 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
 === Build a native Helidon app with GraalVM
 
-. Update `src/main/resources/META-INF/native-image/com.okta.rest/helidon/native-image.properties` so native compilation will work with Java 20.
+. Update `src/main/resources/META-INF/native-image/com.okta.rest/helidon/native-image.properties` so native compilation will work with Java 21.
 +
 [source,properties]
 ----
