@@ -2,7 +2,7 @@
 
 This repository contains example OAuth 2.0 resource servers built with Micronaut, Quarkus, Spring Boot, and Helidon.
 
-**Prerequisites:** [Java 20 with GraalVM](https://sdkman.io/) and [HTTPie](https://httpie.io/).
+**Prerequisites:** [Java 21 with GraalVM](https://sdkman.io/) and [HTTPie](https://httpie.io/).
 
 * [Getting Started](#getting-started)
 * [Links](#links)
@@ -20,9 +20,8 @@ git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
 You will need a JDK with GraalVM and its native-image compiler. Using [SDKMAN](https://sdkman.io), run the following command and set it as the default:
 
 ```bash
-sdk install java 20.0.2-graalce
+sdk install java 21-graalce
 ```
-<!-- https://joshlong.com/jl/blogPost/graalvm-on-apple-m1-arm-computers.html -->
 
 Next, you'll need a [free Auth0 developer account](https://auth0.com/signup). 
 
