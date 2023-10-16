@@ -466,6 +466,75 @@ Substitute `<executable>` as follows:
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.
 
+== What about Reactive?
+
+All of these framework have reactive features. You can create reactive versions of each app with the following changes.
+
+=== Micronaut Reactive
+
+Nothing needs to be done to make Micronaut reactive. It has no separate reactive web framework. See Piotr Minkowski's https://piotrminkowski.com/2019/11/12/micronaut-tutorial-reactive/[Micronaut Tutorial: Reactive] and https://guides.micronaut.io/latest/tag-reactive.html[Micronaut's Reactive Guides] for more information.
+
+=== Quarkus Reactive
+
+To convert the Quarkus application to reactive, change the SmallRye JWT dependency to Quarkus OIDC in `build.gradle`:
+
+[source,gradle]
+----
+implementation 'io.quarkus:quarkus-oidc'
+----
+
+Change the `application.properties` to use OIDC:
+
+[source,properties]
+----
+quarkus.oidc.auth-server-url=https://<your-auth0-domain>
+----
+
+And update `HelloResource.java` to read the name from the JWT:
+
+[source,java]
+----
+package com.okta.rest;
+
+import io.quarkus.security.Authenticated;
+import io.smallrye.mutiny.Uni;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
+@Path("/hello")
+public class HelloResource {
+
+    @Inject
+    JsonWebToken jwt;
+
+    @GET
+    @Path("/")
+    @Authenticated
+    @Produces(MediaType.TEXT_PLAIN)
+    public Uni<String> hello() {
+        return Uni.createFrom().item("Hello, " + jwt.getName() + "!");
+    }
+
+}
+----
+
+For more information, see Quarkus' https://quarkus.io/guides/getting-started-reactive[Getting Started with Reactive] guide.
+
+=== Spring Boot Reactive
+
+https://docs.spring.io/spring-framework/reference/web/webflux.html[Spring WebFlux] is the reactive web framework for Spring Boot.
+
+To convert the Spring Boot application to reactive, change the Spring Web dependency be WebFlux:
+
+[source,gradle]
+----
+implementation 'org.springframework.boot:spring-boot-starter-webflux'
+----
+
 == Native Java REST APIs FTW!
 
 🚀 Find the code on GitHub: https://github.com/oktadev/auth0-java-rest-api-examples[@oktadev/auth0-java-rest-api-examples]
