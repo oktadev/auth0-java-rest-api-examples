@@ -39,8 +39,14 @@ executable=$(basename "$start_command")
 
 # Define memory function
 memory() {
-  ps -o pid,rss,command | grep --color $1 | awk '{$2=int($2/1024)"M";}{ print;}'
+  ps -o pid,rss,command | grep $1 | awk '{$2=int($2/1024)"M";}{ print;}'
 }
+
+kill_cmd="fuser -k -n tcp 8080"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+   kill_cmd="fkill :8080"
+fi
 
 # Start the app in the background
 $start_command &
@@ -70,7 +76,8 @@ while true; do
     memory $executable
 
     # Kill the app
-    fkill :8080
+    $kill_cmd 2> /dev/null || echo "Failed to kill the app running on port 8080."
+
     break
   fi
 

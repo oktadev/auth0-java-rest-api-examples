@@ -33,25 +33,35 @@ case "$selected_app" in
     ;;
 esac
 
+date_cmd="date"
+kill_cmd="fuser -k -n tcp 8080"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+   echo "gdate is used to record timestamps on macOS. Install it using 'brew install coreutils' if needed."
+   date_cmd="gdate"
+   kill_cmd="fkill :8080"
+fi
+
 # Start the app in the background
 $start_command &
 
 # Record the start time in milliseconds
-start_time=$(($(gdate +%s%N)/1000000))
+start_time=$(($($date_cmd +%s%N)/1000000))
 
 # Wait for the app to be available on port 8080
 while true; do
   # Try to access the app using curl
   if curl -s -o /dev/null http://localhost:8080; then
     # Record the end time in milliseconds
-    end_time=$(($(gdate +%s%N)/1000000))
+    end_time=$(($($date_cmd +%s%N)/1000000))
 
     # Calculate the elapsed time in milliseconds
     elapsed_time=$((end_time - start_time))
 
     # Print the time in milliseconds
     echo "App is available on port 8080. Duration to start: ${elapsed_time} milliseconds"
-    fkill :8080
+    
+    $kill_cmd 2> /dev/null || echo "Failed to kill the app running on port 8080."
     break
   fi
 
