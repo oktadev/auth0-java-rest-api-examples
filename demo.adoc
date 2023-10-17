@@ -119,8 +119,8 @@ You should get a 200 response with your user id in it.
 ----
 sdk install quarkus
 quarkus create app com.okta.rest:quarkus \
-    --extension="smallrye-jwt,resteasy-reactive" \
-    --gradle
+  --extension="smallrye-jwt,resteasy-reactive" \
+  --gradle
 ----
 
 . Rename `GreetingResource.java` to `HelloResource.java` and add user information to the `hello()` method: [`qk-hello`]
@@ -405,15 +405,33 @@ Args=--initialize-at-build-time=com.okta.rest \
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (12 + 17 + 16 + 18 + 15) / 5 = 15.6
-Micronaut (optimized): (14 + 13 + 17 + 13 + 13) / 5 = 14
-Quarkus: (35 + 36 + 37 + 37 + 39) / 5 = 36.8
-Spring Boot: (38 + 34 + 34 + 41 + 44) / 5 = 38.2
-Helidon: (51 + 53 + 48 + 39 + 51) / 5 = 48.4
-Helidon (optimized): (28 + 33 + 35 + 32 + 26) / 5 = 30.8
+Micronaut: (17 + 18 + 17 + 12 + 17) / 5 = 16.2
+Micronaut (optimized): (18 + 16 + 18 + 10 + 18) / 5 = 16
+Quarkus: (28 + 28 + 27 + 28 + 28) / 5 = 27.8
+Spring Boot: (41 + 38 + 36 + 40 + 37) / 5 = 38.4
+Helidon*: (50 + 55 + 50 + 57 + 34) / 5 = 49.2
+Helidon (optimized): (21 + 22 + 28 + 25 + 23) / 5 = 23.8
 ----
+_
+NOTE: Helidon https://github.com/helidon-io/helidon/issues/7784[requires Java 20].
 
 ////
+October 2023:
+- Micronaut: 16.2
+- Micronaut (optimized): 16
+- Quarkus: 27.8
+- Spring Boot: 38.4
+- Helidon: 49.2
+- Helidon (optimized): 23.8
+
+August 2023:
+- Micronaut: 15.6
+- Micronaut (optimized): 14
+- Quarkus: 36.8
+- Spring Boot: 38.2
+- Helidon: 48.4
+- Helidon (optimized): 30.8
+
 June 2023:
 - Micronaut: 33.4
 - Micronaut (optimized): 23.8
