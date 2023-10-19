@@ -39,6 +39,7 @@ kill_cmd="fuser -k -n tcp 8080"
 if [[ "$OSTYPE" == "darwin"* ]]; then
    gdate --version || echo "gdate is missing. It is used to record timestamps on macOS. Install it using 'brew install coreutils'."
    date_cmd="gdate"
+   fkill --version || echo "fkill is missing. Install it using 'npm i -g fkill-cli'."
    kill_cmd="fkill :8080"
 fi
 
