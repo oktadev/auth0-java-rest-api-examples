@@ -45,7 +45,7 @@ memory() {
 kill_cmd="fuser -k -n tcp 8080"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-   kill_cmd="fkill :8080"
+   kill_cmd="kill -9 $(lsof -i:8080 -t)"
 fi
 
 # Start the app in the background
