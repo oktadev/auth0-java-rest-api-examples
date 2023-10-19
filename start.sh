@@ -39,7 +39,7 @@ kill_cmd="fuser -k -n tcp 8080"
 if [[ "$OSTYPE" == "darwin"* ]]; then
    gdate --version || echo "gdate is missing. It is used to record timestamps on macOS. Install it using 'brew install coreutils'."
    date_cmd="gdate"
-   kill_cmd="kill -9 $(lsof -i:8080 -t)"
+   kill_cmd="fkill :8080"
 fi
 
 # Start the app in the background
@@ -60,7 +60,7 @@ while true; do
 
     # Print the time in milliseconds
     echo "App is available on port 8080. Duration to start: ${elapsed_time} milliseconds"
-    
+
     $kill_cmd 2> /dev/null || echo "Failed to kill the app running on port 8080."
     break
   fi
