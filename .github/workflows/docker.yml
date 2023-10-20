@@ -14,18 +14,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SDKMAN
-        uses: sdkman/sdkman-action@v1
-        id: sdkman
+      - name: Setup GraalVM
+        uses: graalvm/setup-graalvm@v1
         with:
-          candidate: java
-          version: 21-graalce
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'jdkfile'
-          java-version: 21-graalce
-          jdkFile: ${{ steps.sdkman.outputs.file }}
-      - run: java -version
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          echo "GRAALVM_HOME: $GRAALVM_HOME"
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version
 
       - name: Build Micronaut project
         run: |
