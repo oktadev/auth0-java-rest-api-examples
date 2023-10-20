@@ -1,6 +1,6 @@
 # Java REST API Examples: Micronaut, Quarkus, Spring Boot, and Helidon
 
-This repository contains example OAuth 2.0 resource servers built with Micronaut, Quarkus, Spring Boot, and Helidon. See link:demo.adoc[this demo script] to learn how these apps were created.
+This repository contains example OAuth 2.0 resource servers built with Micronaut, Quarkus, Spring Boot, and Helidon. See [this demo script](demo.adoc) to learn how these apps were created.
 
 **Prerequisites:** [Java 21 with GraalVM](https://sdkman.io/) and [HTTPie](https://httpie.io/).
 
