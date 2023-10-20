@@ -36,7 +36,7 @@ jobs:
         run: |
           cd quarkus
           ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-          docker tag quarkus:latest mraible/quarkus:latest
+          docker tag quarkus-1.0.0-SNAPSHOT-runner:latest mraible/quarkus:latest
         shell: bash
 
       - name: Build Spring Boot project
