@@ -34,21 +34,21 @@ jobs:
 
       - name: Build Quarkus project
         run: |
-          cd ../quarkus
+          cd quarkus
           ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
           docker tag quarkus:latest mraible/quarkus:latest
         shell: bash
 
       - name: Build Spring Boot project
         run: |
-          cd ../spring-boot
+          cd spring-boot
           ./gradlew bootBuildImage
           docker tag spring-boot:latest mraible/spring-boot:latest
         shell: bash
 
       - name: Build Helidon project
         run: |
-          cd ../helidon
+          cd helidon
           docker build -t helidon -f Dockerfile.native .
           docker tag helidon:latest mraible/helidon:latest
         shell: bash
