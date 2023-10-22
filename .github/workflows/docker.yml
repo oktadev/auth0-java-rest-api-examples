@@ -42,7 +42,7 @@ jobs:
       - name: Build Spring Boot project
         run: |
           cd spring-boot
-          ./gradlew bootBuildImage
+          ./gradlew bootBuildImage --imageName=spring-boot
           docker tag spring-boot:latest mraible/spring-boot:latest
         shell: bash
 
