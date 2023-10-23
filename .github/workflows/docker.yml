@@ -36,21 +36,21 @@ jobs:
           cd quarkus
           ./gradlew build -Dquarkus.package.type=native
           docker build -f src/main/docker/Dockerfile.native -t quarkus .
-          docker tag quarkus mraible/quarkus
+          docker tag quarkus:latest mraible/quarkus:latest
         shell: bash
 
       - name: Build Spring Boot project
         run: |
           cd spring-boot
           ./gradlew bootBuildImage --imageName=spring-boot
-          docker tag spring-boot mraible/spring-boot
+          docker tag spring-boot:latest mraible/spring-boot:latest
         shell: bash
 
       - name: Build Helidon project
         run: |
           cd helidon
           docker build -t helidon -f Dockerfile.native .
-          docker tag helidon mraible/helidon
+          docker tag helidon:latest mraible/helidon:latest
         shell: bash
 
       - name: Login to DockerHub
@@ -58,20 +58,20 @@ jobs:
 
       - name: Publish Micronaut Docker image to DockerHub
         run: |
-          docker push mraible/micronaut
+          docker push mraible/micronaut:latest
         shell: bash
 
       - name: Publish Quarkus Docker image to DockerHub
         run: |
-          docker push mraible/quarkus
+          docker push mraible/quarkus:latest
         shell: bash
 
       - name: Publish Spring Boot Docker image to DockerHub
         run: |
-          docker push mraible/spring-boot
+          docker push mraible/spring-boot:latest
         shell: bash
 
       - name: Publish Helidon Docker image to DockerHub
         run: |
-          docker push mraible/helidon
+          docker push mraible/helidon:latest
         shell: bash
