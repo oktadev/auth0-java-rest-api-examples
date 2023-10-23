@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-
 set -e
+
+# From https://guides.micronaut.io/latest/micronaut-docker-image-gradle-java.html
+# Set up EC2: https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
 
 TYPE="docker"
 PORT=8080
