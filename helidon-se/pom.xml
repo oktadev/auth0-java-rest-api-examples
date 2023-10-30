@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-nima</artifactId>
-			<version>0.5</version>
+			<version>0.6</version>
 			<exclusions>
 				<exclusion>
 					<groupId>io.avaje</groupId>
@@ -42,13 +42,13 @@
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-nima-generator</artifactId>
-			<version>0.5</version>
+			<version>0.6</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-nima-test</artifactId>
-			<version>0.5</version>
+			<version>0.6</version>
 			<scope>test</scope>
 		</dependency>
         <dependency>
