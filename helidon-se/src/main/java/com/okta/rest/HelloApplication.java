@@ -3,7 +3,6 @@ package com.okta.rest;
 import java.net.URI;
 
 import com.okta.rest.controller.HelloResource;
-import com.okta.rest.controller.HelloResource$Route;
 
 import io.helidon.common.configurable.Resource;
 import io.helidon.config.Config;
@@ -17,9 +16,6 @@ import io.helidon.webserver.security.SecurityFeature;
 public class HelloApplication {
 
   public static void main(String[] args) {
-    
-    final HttpRouting.Builder routeBuilder =
-        HttpRouting.builder().addFeature(new HelloResource$Route(new HelloResource()));
 
     var config = Config.global();
     var oauth =
@@ -33,6 +29,7 @@ public class HelloApplication {
                         .map(URI::create)
                         .orElseThrow()))
             .build();
+
     Security security = Security.builder().addProvider(oauth).build();
     var securityFeature =
         SecurityFeature.create(
@@ -41,11 +38,16 @@ public class HelloApplication {
                     .addPath(p -> p.path("/hello").handler(h -> h.authenticate(true))));
 
     WebServer.builder()
-        .config(config)
-        .addRouting(routeBuilder)
+        .config(config.get("server"))
+        .routing(HelloApplication::routing)
         .addFeature(ContextFeature.create())
         .addFeature(securityFeature)
         .build()
         .start();
+  }
+
+  /** Updates HTTP Routing. */
+  static void routing(HttpRouting.Builder routing) {
+    routing.addFeature(new HelloResource());
   }
 }

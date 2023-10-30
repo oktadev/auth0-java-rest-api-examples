@@ -15,15 +15,9 @@
 
 	<properties>
 		<mainClass>com.okta.rest.HelloApplication</mainClass>
-		<avaje.http.version>2.0</avaje.http.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>io.avaje</groupId>
-			<artifactId>avaje-http-api</artifactId>
-			<version>${avaje.http.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>io.helidon.webserver</groupId>
 			<artifactId>helidon-webserver</artifactId>
@@ -44,12 +38,5 @@
             <groupId>io.helidon.http.media</groupId>
             <artifactId>helidon-http-media-jsonp</artifactId>
         </dependency>
-		<!-- Annotation processors -->
-		<dependency>
-			<groupId>io.avaje</groupId>
-			<artifactId>avaje-http-helidon-generator</artifactId>
-			<version>${avaje.http.version}</version>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 </project>

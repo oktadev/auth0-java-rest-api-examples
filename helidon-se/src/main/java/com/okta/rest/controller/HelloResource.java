@@ -1,22 +1,26 @@
 package com.okta.rest.controller;
 
-import io.avaje.http.api.Controller;
-import io.avaje.http.api.Get;
-import io.avaje.http.api.MediaType;
-import io.avaje.http.api.Produces;
+import static io.helidon.http.Status.OK_200;
+
+import io.helidon.common.media.type.MediaTypes;
 import io.helidon.security.SecurityContext;
+import io.helidon.webserver.http.HttpFeature;
+import io.helidon.webserver.http.HttpRouting;
 import io.helidon.webserver.http.ServerRequest;
+import io.helidon.webserver.http.ServerResponse;
 
-// controller adapter generated at compile time
-@Controller("/hello")
-public class HelloResource {
+public class HelloResource implements HttpFeature {
 
-  @Get
-  @Produces(MediaType.TEXT_PLAIN)
-  public String hello(ServerRequest req) {
+  @Override
+  public void setup(HttpRouting.Builder routing) {
+    routing.get("/hello", this::hello);
+  }
+
+  public void hello(ServerRequest req, ServerResponse res) {
 
     SecurityContext context = req.context().get(SecurityContext.class).orElseThrow();
-
-    return "Hello, " + context.userName() + "!";
+    res.status(OK_200);
+    res.headers().contentType(MediaTypes.TEXT_PLAIN);
+    res.send("Hello, " + context.userName() + "!");
   }
 }
