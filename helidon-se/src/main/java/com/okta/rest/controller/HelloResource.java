@@ -7,7 +7,7 @@ import io.avaje.http.api.Produces;
 import io.helidon.security.SecurityContext;
 import io.helidon.webserver.http.ServerRequest;
 
-// controller and DI classes generated at compile time
+// controller adapter generated at compile time
 @Controller("/hello")
 public class HelloResource {
 

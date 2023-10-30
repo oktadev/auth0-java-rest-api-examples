@@ -1,100 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.helidon.applications</groupId>
         <artifactId>helidon-se</artifactId>
         <version>4.0.0</version>
         <relativePath/>
     </parent>
-    <groupId>com.okta.rest</groupId>
-    <artifactId>helidon-se</artifactId>
-    <version>1.0-SNAPSHOT</version>
+	<groupId>com.okta.rest</groupId>
+	<artifactId>helidon-se</artifactId>
+	<version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <mainClass>com.okta.rest.HelloApplication</mainClass>
-    </properties>
+	<properties>
+		<mainClass>com.okta.rest.HelloApplication</mainClass>
+		<avaje.http.version>2.0</avaje.http.version>
+	</properties>
 
-    <dependencies>
-       
+	<dependencies>
 		<dependency>
 			<groupId>io.avaje</groupId>
-			<artifactId>avaje-nima</artifactId>
-			<version>0.5</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.avaje</groupId>
-					<artifactId>avaje-http-client</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.avaje</groupId>
-					<artifactId>validator-constraints</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.avaje</groupId>
-					<artifactId>avaje-validator</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>io.avaje</groupId>
-			<artifactId>avaje-nima-generator</artifactId>
-			<version>0.5</version>
-			<scope>provided</scope>
+			<artifactId>avaje-http-api</artifactId>
+			<version>${avaje.http.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.avaje</groupId>
-			<artifactId>avaje-nima-test</artifactId>
-			<version>0.5</version>
-			<scope>test</scope>
+			<groupId>io.helidon.webserver</groupId>
+			<artifactId>helidon-webserver</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>io.helidon.webserver</groupId>
-            <artifactId>helidon-webserver-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.helidon.webserver</groupId>
-            <artifactId>helidon-webserver-context</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>io.helidon.webserver</groupId>
+			<artifactId>helidon-webserver-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.helidon.webserver</groupId>
+			<artifactId>helidon-webserver-context</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>io.helidon.security.providers</groupId>
 			<artifactId>helidon-security-providers-jwt</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <scope>test</scope>
-        </dependency>
-        
-        <dependency>
+		<dependency>
             <groupId>io.helidon.http.media</groupId>
             <artifactId>helidon-http-media-jsonp</artifactId>
         </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-libs</id>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jboss.jandex</groupId>
-                <artifactId>jandex-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>make-index</id>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+		<!-- Annotation processors -->
+		<dependency>
+			<groupId>io.avaje</groupId>
+			<artifactId>avaje-http-helidon-generator</artifactId>
+			<version>${avaje.http.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
