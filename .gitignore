@@ -1,2 +1,7 @@
 .idea/
 helidon/target/
+helidon-se/target/
+helidon-se/.classpath
+helidon-se/.factorypath
+helidon-se/.project
+*.prefs
