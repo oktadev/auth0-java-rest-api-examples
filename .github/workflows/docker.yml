@@ -34,7 +34,7 @@ jobs:
       - name: Build Quarkus project
         run: |
           cd quarkus
-          ./gradlew build -Dquarkus.package.type=native
+          ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
           docker build -f src/main/docker/Dockerfile.native -t quarkus .
           docker tag quarkus:latest mraible/quarkus:latest
         shell: bash
