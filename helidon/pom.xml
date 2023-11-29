@@ -6,15 +6,13 @@
     <parent>
         <groupId>io.helidon.applications</groupId>
         <artifactId>helidon-mp</artifactId>
-        <version>4.0.0</version>
+        <version>4.0.1</version>
         <relativePath/>
     </parent>
     <groupId>com.okta.rest</groupId>
     <artifactId>helidon</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -24,14 +22,6 @@
         <dependency>
             <groupId>io.helidon.microprofile.openapi</groupId>
             <artifactId>helidon-microprofile-openapi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.microprofile.metrics</groupId>
-            <artifactId>microprofile-metrics-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.helidon.microprofile.metrics</groupId>
-            <artifactId>helidon-microprofile-metrics</artifactId>
         </dependency>
         <dependency>
             <groupId>io.helidon.microprofile.health</groupId>
@@ -51,6 +41,11 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>io.helidon.logging</groupId>
+            <artifactId>helidon-logging-jul</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>jandex</artifactId>
             <scope>runtime</scope>
@@ -58,7 +53,14 @@
         <dependency>
             <groupId>jakarta.activation</groupId>
             <artifactId>jakarta.activation-api</artifactId>
-            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.metrics</groupId>
+            <artifactId>microprofile-metrics-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.microprofile.metrics</groupId>
+            <artifactId>helidon-microprofile-metrics</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -89,7 +91,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.jboss.jandex</groupId>
+                <groupId>io.smallrye</groupId>
                 <artifactId>jandex-maven-plugin</artifactId>
                 <executions>
                     <execution>
