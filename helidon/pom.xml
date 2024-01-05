@@ -13,7 +13,6 @@
     <artifactId>helidon</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <dependencies>
         <dependency>
             <groupId>io.helidon.microprofile.bundles</groupId>
