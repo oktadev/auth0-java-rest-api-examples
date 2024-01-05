@@ -32,7 +32,7 @@ Use SDKMAN to install Java 21 with GraalVM
 +
 [source,shell]
 ----
-auth0 test token -a https://<your-auth0-domain>/api/v2/
+auth0 test token -a https://<your-auth0-domain>/api/v2/ -s openid
 ----
 
 . Set the access token as a `TOKEN` environment variable in a terminal window.
@@ -222,9 +222,11 @@ public class HelloResourceTest {
 [source,shell]
 ----
 sdk install springboot
-spring init -d=web,oauth2-resource-server,native \
+spring init -d=web,oauth2-resource-server,native -b=3.2.0 \
   --group-id=com.okta.rest --package-name=com.okta.rest spring-boot
 ----
++
+CAUTION: Spring Boot 3.2.1 https://github.com/oktadev/auth0-java-rest-api-examples/pull/58#issuecomment-1877844650[does not work with GraalVM].
 
 . Add a `HelloController` class that returns the user's information: [`sb-hello`]
 +
