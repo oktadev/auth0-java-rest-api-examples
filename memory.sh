@@ -45,7 +45,8 @@ memory() {
 kill_cmd="fuser -k -n tcp 8080"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-   kill_cmd="kill -9 $(lsof -i:8080 -t)"
+   fkill --version || echo "fkill is missing. Install it using 'npm i -g fkill-cli'."
+   kill_cmd="fkill :8080"
 fi
 
 # Start the app in the background
@@ -66,13 +67,13 @@ while true; do
     echo -e "\n---- Memory usage after the first request:"
     memory $executable
 
-    # Make four more curl requests with an access token
-    for ((i=1; i<=4; i++)); do
+    # Make 9 more curl requests with an access token
+    for ((i=1; i<=9; i++)); do
       curl -s -o /dev/null localhost:8080/hello -i --header "Authorization: Bearer $access_token"
     done
 
-    # Print out memory usage after five requests
-    echo -e "\n---- Memory usage after five requests:"
+    # Print out memory usage after 10 requests
+    echo -e "\n---- Memory usage after 10 requests:"
     memory $executable
 
     # Kill the app
