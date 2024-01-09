@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: 'maven'
+    directory: '/helidon'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'gradle'
+    directory: '/micronaut'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'gradle'
+    directory: '/quarkus'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'gradle'
+    directory: '/spring-boot'
+    schedule:
+      interval: 'daily'
+

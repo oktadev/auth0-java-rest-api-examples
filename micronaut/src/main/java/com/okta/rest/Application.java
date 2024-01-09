@@ -1,4 +1,4 @@
-package com.example.rest;
+package com.okta.rest;
 
 import io.micronaut.runtime.Micronaut;
 

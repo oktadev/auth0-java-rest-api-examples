@@ -1,8 +1,8 @@
 # Java REST API Examples: Micronaut, Quarkus, Spring Boot, and Helidon
 
-This repository contains example OAuth 2.0 resource servers built with Micronaut, Quarkus, Spring Boot, and Helidon.
+This repository contains example OAuth 2.0 resource servers built with Micronaut, Quarkus, Spring Boot, and Helidon. See [this demo script](demo.adoc) to learn how these apps were created.
 
-**Prerequisites:** [Java 20 with GraalVM](https://sdkman.io/) and [HTTPie](https://httpie.io/).
+**Prerequisites:** [Java 21 with GraalVM](https://sdkman.io/) and [HTTPie](https://httpie.io/).
 
 * [Getting Started](#getting-started)
 * [Links](#links)
@@ -20,9 +20,8 @@ git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
 You will need a JDK with GraalVM and its native-image compiler. Using [SDKMAN](https://sdkman.io), run the following command and set it as the default:
 
 ```bash
-sdk install java 22.3.3.r20-grl
+sdk install java 21-graalce
 ```
-<!-- https://joshlong.com/jl/blogPost/graalvm-on-apple-m1-arm-computers.html -->
 
 Next, you'll need a [free Auth0 developer account](https://auth0.com/signup). 
 
@@ -42,7 +41,7 @@ TOKEN=eyJraWQiOiJYa2pXdjMzTDRBYU1ZSzNGM...
 
 Change the following files for each framework to match your Auth0 domain:
 
-- Micronaut: `micronaut/src/main/resources/application.yml`
+- Micronaut: `micronaut/src/main/resources/application.properties`
 - Quarkus: `quarkus/src/main/resources/application.properties`
 - Spring Boot: `spring-boot/src/main/resources/application.properties`
 - Helidon: `helidon/src/main/resources/META-INF/microprofile-config.properties`
@@ -50,6 +49,7 @@ Change the following files for each framework to match your Auth0 domain:
 You can start each app using its CLI, Gradle, or Maven. Note that you will only be able to start one at a time since they all run on port 8080.
 
 - Micronaut: `./gradlew run`
+- Micronaut [AOT](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_micronaut_aot_plugin): `./gradlew optimizedRun`
 - Quarkus: `quarkus dev`
 - Spring Boot: `./gradlew bootRun`
 - Helidon: `helidon dev`
@@ -67,6 +67,7 @@ You should see your email address printed to your terminal.
 You can also build and run each example as a native app.
 
 - Micronaut: `./gradlew nativeCompile`
+- Micronaut [AOT](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/#_micronaut_aot_plugin): `./gradlew nativeOptimizedCompile` - GraalVM executable compiled with Micronaut AOT optimizations
 - Quarkus: `quarkus build --native`
 - Spring Boot: `./gradlew nativeCompile`
 - Helidon: `mvn package -Pnative-image`
@@ -74,6 +75,7 @@ You can also build and run each example as a native app.
 Then, start each app as a native executable.
 
 - Micronaut: `./build/native/nativeCompile/app`
+- Micronaut AOT: `./build/native/nativeOptimizedCompile/app`
 - Quarkus: `./build/quarkus-1.0.0-SNAPSHOT-runner`
 - Spring Boot:  `./build/native/nativeCompile/spring-boot`
 - Helidon: `./target/helidon`

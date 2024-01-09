@@ -1,0 +1,77 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          echo "GRAALVM_HOME: $GRAALVM_HOME"
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version
+
+      - name: Build Micronaut project
+        run: |
+          cd micronaut
+          ./gradlew dockerBuildNative
+          docker tag app:latest mraible/micronaut:latest
+        shell: bash
+
+      - name: Build Quarkus project
+        run: |
+          cd quarkus
+          ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
+          docker build -f src/main/docker/Dockerfile.native -t quarkus .
+          docker tag quarkus:latest mraible/quarkus:latest
+        shell: bash
+
+      - name: Build Spring Boot project
+        run: |
+          cd spring-boot
+          ./gradlew bootBuildImage --imageName=spring-boot
+          docker tag spring-boot:latest mraible/spring-boot:latest
+        shell: bash
+
+      - name: Build Helidon project
+        run: |
+          cd helidon
+          docker build -t helidon -f Dockerfile.native .
+          docker tag helidon:latest mraible/helidon:latest
+        shell: bash
+
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Publish Micronaut Docker image to DockerHub
+        run: |
+          docker push mraible/micronaut:latest
+        shell: bash
+
+      - name: Publish Quarkus Docker image to DockerHub
+        run: |
+          docker push mraible/quarkus:latest
+        shell: bash
+
+      - name: Publish Spring Boot Docker image to DockerHub
+        run: |
+          docker push mraible/spring-boot:latest
+        shell: bash
+
+      - name: Publish Helidon Docker image to DockerHub
+        run: |
+          docker push mraible/helidon:latest
+        shell: bash
