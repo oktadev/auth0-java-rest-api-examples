@@ -21,7 +21,7 @@ toc::[]
 
 Use SDKMAN to install Java 21 with GraalVM
 
-  sdk install java 21-graalce
+  sdk install java 21.0.1-graalce
 
 == Generate an OAuth 2.0 Access Token
 
@@ -32,7 +32,7 @@ Use SDKMAN to install Java 21 with GraalVM
 +
 [source,shell]
 ----
-auth0 test token -a https://<your-auth0-domain>/api/v2/
+auth0 test token -a https://<your-auth0-domain>/api/v2/ -s openid
 ----
 
 . Set the access token as a `TOKEN` environment variable in a terminal window.
@@ -222,9 +222,11 @@ public class HelloResourceTest {
 [source,shell]
 ----
 sdk install springboot
-spring init -d=web,oauth2-resource-server,native \
+spring init -d=web,oauth2-resource-server,native -b=3.2.0 \
   --group-id=com.okta.rest --package-name=com.okta.rest spring-boot
 ----
++
+CAUTION: Spring Boot 3.2.1 https://github.com/oktadev/auth0-java-rest-api-examples/pull/58#issuecomment-1877844650[does not work with GraalVM].
 
 . Add a `HelloController` class that returns the user's information: [`sb-hello`]
 +
@@ -383,7 +385,8 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 ----
 Args=--initialize-at-build-time=com.okta.rest \
   --initialize-at-run-time=io.helidon.openapi.ExpandedTypeDescription \
-  --report-unsupported-elements-at-runtime
+  --report-unsupported-elements-at-runtime \
+  -H:+AddAllCharsets
 ----
 
 . Compile your Helidon app into a native executable using the `native-image` profile:
@@ -401,71 +404,31 @@ Args=--initialize-at-build-time=com.okta.rest \
 == Startup Time Comparison
 
 . Run each image three times before recording the numbers, then each command five times.
++
+TIP: Use the link:start.sh[`start.sh`] script to get the real time, not what each framework prints to the console.
 
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (19 + 18 + 17 + 12 + 19) / 5 = 17
-Micronaut (optimized): (18 + 15 + 19 + 20 + 17) / 5 = 17.8
-Quarkus: (29 + 26 + 27 + 29 + 25) / 5 = 27.2
-Spring Boot: (42 + 43 + 37 + 44 + 36) / 5 = 40.4
-Helidon*: (50 + 52 + 42 + 53 + 55) / 5 = 50.4
-Helidon (optimized): (33 + 34 + 38 + 37 + 36) / 5 = 35.6
+Micronaut: (51 + 50 + 51 + 47 + 47) / 5 = 49.2
+Micronaut (optimized): (49 + 50 + 48 + 52 + 57) / 5 = 51.2
+Quarkus: (48 + 44 + 46 + 49 + 54) / 5 = 48.2
+Spring Boot: (70 + 70 + 75 + 73 + 69) / 5 = 71.4
+Helidon: (66 + 68 + 62 + 64 + 73) / 5 = 66.6
+Helidon (optimized): (42 + 44 +68 + 49 + 66) / 5 = 53.8
 ----
-+
-NOTE: Helidon https://github.com/helidon-io/helidon/issues/7784[requires Java 20].
 
 .Native Java startup times in milliseconds
 |===
 |Framework | Command executed | Milliseconds to start
 
-|Micronaut | `./micronaut/build/native/nativeCompile/app` | 17
-|Micronaut (optimized) | `./micronaut/build/native/nativeOptimizedCompile/app` | 17.8
-|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 27.2
-|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 40.4
-|Helidon | `./helidon/target/helidon` | 50.4
-|Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 35.6
+|Micronaut | `./micronaut/build/native/nativeCompile/app` | 49.2
+|Micronaut (optimized) | `./micronaut/build/native/nativeOptimizedCompile/app` | 51.2
+|Quarkus | `./quarkus/build/quarkus-1.0.0-SNAPSHOT-runner` | 48.2
+|Spring Boot | `./spring-boot/build/native/nativeCompile/spring-boot` | 71.4
+|Helidon | `./helidon/target/helidon` | 66.6
+|Helidon (optimized) | https://github.com/oktadev/auth0-java-rest-api-examples/pull/2[auth0-java-rest-api-examples/pull/2] | 53.8
 |===
-
-////
-October 19, 2023:
-- Micronaut: 17
-- Micronaut (optimized): 17.8
-- Quarkus: 27.2
-- Spring Boot: 40.4
-- Helidon: 50.4
-- Helidon (optimized): 35.6
-
-October 17, 2023:
-- Micronaut: 16.2
-- Micronaut (optimized): 16
-- Quarkus: 27.8
-- Spring Boot: 38.4
-- Helidon: 49.2
-- Helidon (optimized): 23.8
-
-August 2023:
-- Micronaut: 15.6
-- Micronaut (optimized): 14
-- Quarkus: 36.8
-- Spring Boot: 38.2
-- Helidon: 48.4
-- Helidon (optimized): 30.8
-
-June 2023:
-- Micronaut: 33.4
-- Micronaut (optimized): 23.8
-- Quarkus: 25.8
-- Spring Boot: 39.8
-- Helidon: 47.6
-- Helidon (optimized): 33.2
-
-October 2022:
-- Micronaut was 18
-- Quarkus was 20.6
-- Spring Boot was 39
-- Helidon was 43.2
-////
 
 == Memory Usage Comparison
 
@@ -480,14 +443,14 @@ Substitute `<executable>` as follows:
 
 .Native Java memory used in megabytes
 |===
-|Framework | Executable | Megabytes after startup | Megabytes after 1 request| Megabytes after 5 requests
+|Framework | Executable | Megabytes after startup | Megabytes after 1 request| Megabytes after 10 requests
 
-|Micronaut | `app` | 53 | 63 | 64
-|Micronaut (optimized) | `app` | 45 | 65 | 67
-|Quarkus | `quarkus` | 41 | 51 | 53
-|Spring Boot | `spring-boot` | 74 | 84 | 84
-|Helidon | `helidon` | 83 | 99 | 117
-|Helidon (optimized) | `helidon` | 72 | 89 | 123
+|Micronaut | `app` | 53 | 62 | 66
+|Micronaut (optimized) | `app` | 53 | 63 | 67
+|Quarkus | `quarkus` | 37 | 48 | 52
+|Spring Boot | `spring-boot` | 76 | 86 | 87
+|Helidon | `helidon` | 82 | 92 | 93
+|Helidon (optimized) | `helidon` | 62 | 72 | 73
 |===
 
 IMPORTANT: If you disagree with these numbers and think X framework should be faster, I encourage you to clone https://github.com/oktadev/auth0-java-rest-api-examples[this repo] and run these tests yourself.
