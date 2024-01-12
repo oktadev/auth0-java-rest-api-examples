@@ -379,14 +379,11 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
 === Build a native Helidon app with GraalVM
 
-. Update `src/main/resources/META-INF/native-image/com.okta.rest/helidon/native-image.properties` so native compilation will work with Java 21.
+. Update `src/main/resources/META-INF/native-image/com/okta/rest/helidon/native-image.properties` so native compilation will work with Java 21.
 +
 [source,properties]
 ----
-Args=--initialize-at-build-time=com.okta.rest \
-  --initialize-at-run-time=io.helidon.openapi.ExpandedTypeDescription \
-  --report-unsupported-elements-at-runtime \
-  -H:+AddAllCharsets
+Args=--initialize-at-build-time=com.okta.rest -H:+AddAllCharsets
 ----
 
 . Compile your Helidon app into a native executable using the `native-image` profile:
