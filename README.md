@@ -20,7 +20,7 @@ git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
 You will need a JDK with GraalVM and its native-image compiler. Using [SDKMAN](https://sdkman.io), run the following command and set it as the default:
 
 ```bash
-sdk install java 21-graalce
+sdk install java 21.0.1-graalce
 ```
 
 Next, you'll need a [free Auth0 developer account](https://auth0.com/signup). 
@@ -30,7 +30,7 @@ Install the [Auth0 CLI](https://github.com/auth0/auth0-cli#installation) and run
 Create an access token using Auth0's CLI:
 
 ```shell
-auth0 test token -a https://<your-auth0-domain>/api/v2/
+auth0 test token -a https://<your-auth0-domain>/api/v2/ -s openid
 ```
 
 Set the access token as a `TOKEN` environment variable in a terminal window.
