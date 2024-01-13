@@ -11,6 +11,10 @@ This repository contains example OAuth 2.0 resource servers built with Micronaut
 
 ## Getting Started
 
+Click the button below to start a new GitPod development environment:
+
+[![Open in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/oktadev/auth0-java-rest-api-examples)
+
 First, clone this repository:
 
 ```bash
