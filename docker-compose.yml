@@ -1,0 +1,22 @@
+version: '3'
+services:
+  micronaut:
+    image: mraible/micronaut:latest
+    platform: linux/amd64
+    ports:
+      - 8080:8080
+  quarkus:
+    image: mraible/quarkus:latest
+    platform: linux/amd64
+    ports:
+      - 8081:8081
+  spring-boot:
+    image: mraible/spring-boot:latest
+    platform: linux/amd64
+    ports:
+      - 8082:8082
+  helidon:
+    image: mraible/helidon:latest
+    platform: linux/amd64
+    ports:
+      - 8083:8083
