@@ -15,7 +15,7 @@ Click the button below to start a new GitPod development environment:
 
 [![Open in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/oktadev/auth0-java-rest-api-examples)
 
-First, clone this repository:
+Or, if you'd rather try things locally, clone this repository:
 
 ```bash
 git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
