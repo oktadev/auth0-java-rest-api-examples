@@ -26,7 +26,7 @@ git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
 You will need a JDK with GraalVM and its native-image compiler. Using [SDKMAN](https://sdkman.io), run the following command and set it as the default:
 
 ```bash
-sdk install java 21.0.1-graalce
+sdk install java 21.0.2-graalce
 ```
 
 Next, you'll need a [free Auth0 developer account](https://auth0.com/signup). 

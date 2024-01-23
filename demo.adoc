@@ -21,7 +21,7 @@ toc::[]
 
 Use SDKMAN to install Java 21 with GraalVM
 
-  sdk install java 21.0.1-graalce
+  sdk install java 21.0.2-graalce
 
 == Generate an OAuth 2.0 Access Token
 
