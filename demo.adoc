@@ -379,13 +379,6 @@ mp.jwt.verify.publickey.location=${mp.jwt.verify.issuer}.well-known/jwks.json
 
 === Build a native Helidon app with GraalVM
 
-. Update `src/main/resources/META-INF/native-image/com/okta/rest/helidon/native-image.properties` so native compilation will work with Java 21.
-+
-[source,properties]
-----
-Args=--initialize-at-build-time=com.okta.rest -H:+AddAllCharsets
-----
-
 . Compile your Helidon app into a native executable using the `native-image` profile:
 
   mvn package -Pnative-image
@@ -407,12 +400,12 @@ TIP: Use the link:start.sh[`start.sh`] script to get the real time, not what eac
 . Write each time down, add them up, and divide by five for the average. For example:
 +
 ----
-Micronaut: (51 + 50 + 51 + 47 + 47) / 5 = 49.2
-Micronaut (optimized): (49 + 50 + 48 + 52 + 57) / 5 = 51.2
-Quarkus: (48 + 44 + 46 + 49 + 54) / 5 = 48.2
-Spring Boot: (70 + 70 + 75 + 73 + 69) / 5 = 71.4
-Helidon: (66 + 68 + 62 + 64 + 73) / 5 = 66.6
-Helidon (optimized): (42 + 44 +68 + 49 + 66) / 5 = 53.8
+Micronaut: (37 + 37 + 40 + 38 + 40) / 5 = 38.4
+Micronaut (optimized): (36 + 39 + 41 + 39 + 40) / 5 = 39
+Quarkus: (35 + 48 + 49 + 35 + 43) / 5 = 42
+Spring Boot: (57 + 57 + 62 + 63 + 63) / 5 = 60.4
+Helidon: (67 + 49 + 52 + 50 + 56) / 5 = 54.8
+Helidon (optimized): () / 5 = 53.8
 ----
 
 .Native Java startup times in milliseconds

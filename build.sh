@@ -7,7 +7,7 @@ rm -rf {micronaut,quarkus,spring-boot}/build
 rm -rf helidon/target
 
 source ~/.sdkman/bin/sdkman-init.sh
-sdk use java 21.0.1-graalce
+sdk use java 21.0.2-graalce
 
 echo "Building Micronaut..."
 cd micronaut && ./gradlew nativeCompile
