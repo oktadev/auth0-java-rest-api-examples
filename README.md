@@ -2,6 +2,8 @@
 
 This repository contains example OAuth 2.0 resource servers built with Micronaut, Quarkus, Spring Boot, and Helidon. See [this demo script](demo.adoc) to learn how these apps were created.
 
+Visit [@oktadev/auth0-java-reactive-examples](https://github.com/oktadev/auth0-java-reactive-examples) for examples using the reactive versions of these frameworks.
+
 **Prerequisites:** [Java 21 with GraalVM](https://sdkman.io/) and [HTTPie](https://httpie.io/).
 
 * [Getting Started](#getting-started)
@@ -11,7 +13,11 @@ This repository contains example OAuth 2.0 resource servers built with Micronaut
 
 ## Getting Started
 
-First, clone this repository:
+Click the button below to start a new Gitpod development environment:
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/oktadev/auth0-java-rest-api-examples)
+
+Or, if you'd rather try things locally, clone this repository:
 
 ```bash
 git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
@@ -20,7 +26,7 @@ git clone https://github.com/oktadev/auth0-java-rest-api-examples.git
 You will need a JDK with GraalVM and its native-image compiler. Using [SDKMAN](https://sdkman.io), run the following command and set it as the default:
 
 ```bash
-sdk install java 21.0.1-graalce
+sdk install java 21.0.2-graalce
 ```
 
 Next, you'll need a [free Auth0 developer account](https://auth0.com/signup). 
