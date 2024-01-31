@@ -67,13 +67,13 @@ while true; do
     echo -e "\n---- Memory usage after the first request:"
     memory $executable
 
-    # Make 9 more curl requests with an access token
-    for ((i=1; i<=9; i++)); do
+    # Make 9,999 more curl requests with an access token
+    for ((i=1; i<=9999; i++)); do
       curl -s -o /dev/null localhost:8080/hello -i --header "Authorization: Bearer $access_token"
     done
 
-    # Print out memory usage after 10 requests
-    echo -e "\n---- Memory usage after 10 requests:"
+    # Print out memory usage after 10,000 requests
+    echo -e "\n---- Memory usage after 10,000 requests:"
     memory $executable
 
     # Kill the app
