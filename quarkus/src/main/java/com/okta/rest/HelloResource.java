@@ -2,6 +2,7 @@ package com.okta.rest;
 
 import io.quarkus.security.Authenticated;
 
+import io.smallrye.common.annotation.RunOnVirtualThread;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -18,6 +19,7 @@ public class HelloResource {
     @Path("/")
     @Authenticated
     @Produces(MediaType.TEXT_PLAIN)
+    @RunOnVirtualThread
     public String hello(@Context SecurityContext context) {
         Principal userPrincipal = context.getUserPrincipal();
         return "Hello, " + userPrincipal.getName() + "!";
