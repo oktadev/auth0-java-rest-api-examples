@@ -20,7 +20,7 @@ dependencies {
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("io.micronaut:micronaut-http-client")
-    aotPlugins(platform("io.micronaut.platform:micronaut-platform:4.2.4"))
+    aotPlugins(platform("io.micronaut.platform:micronaut-platform:4.3.7"))
     aotPlugins("io.micronaut.security:micronaut-security-aot")
 }
 
